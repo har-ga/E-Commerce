@@ -4,6 +4,7 @@ package com.educative.ecommerce.controllers;
 import com.educative.ecommerce.common.ApiResponse;
 import com.educative.ecommerce.dto.product.ProductDto;
 import com.educative.ecommerce.model.Category;
+import com.educative.ecommerce.repository.CategoryRepository;
 import com.educative.ecommerce.service.CategoryService;
 import com.educative.ecommerce.service.ProductService;
 
@@ -29,10 +30,19 @@ public class ProductController {
     ProductService productService;
     @Autowired
     CategoryService categoryService;
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @GetMapping("/")
     public ResponseEntity<List<ProductDto>> getProducts() {
         List<ProductDto> body = productService.listProducts();
+        return new ResponseEntity<>(body, HttpStatus.OK);
+    }
+
+    @GetMapping("/{categoryName}")
+	public ResponseEntity<List<ProductDto>> getProductsByCategory(@PathVariable("categoryName") String categoryName) {
+        Category category = categoryRepository.findByCategoryName(categoryName);
+        List<ProductDto> body = productService.listProductsByCategory(category);
         return new ResponseEntity<>(body, HttpStatus.OK);
     }
 

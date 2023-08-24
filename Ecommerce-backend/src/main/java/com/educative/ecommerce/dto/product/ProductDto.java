@@ -34,6 +34,16 @@ public class ProductDto {
     public ProductDto() {
     }
 
+    public ProductDto(Integer id, @NotNull String name, @NotNull String imageURL, @NotNull double price,
+            @NotNull String description, @NotNull Integer categoryId) {
+        this.id = id;
+        this.name = name;
+        this.imageURL = imageURL;
+        this.price = price;
+        this.description = description;
+        this.categoryId = categoryId;
+    }
+
     public Integer getId() {
         return id;
     }

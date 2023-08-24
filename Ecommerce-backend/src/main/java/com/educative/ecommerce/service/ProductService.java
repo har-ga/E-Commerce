@@ -1,6 +1,7 @@
 package com.educative.ecommerce.service;
 
 
+import com.educative.ecommerce.dto.cart.CartItemDto;
 import com.educative.ecommerce.dto.product.ProductDto;
 import com.educative.ecommerce.exceptions.ProductNotExistException;
 import com.educative.ecommerce.model.Category;
@@ -30,6 +31,15 @@ public class ProductService {
 
     public List<ProductDto> listProducts() {
         List<Product> products = productRepository.findAll();
+        List<ProductDto> productDtos = new ArrayList<>();
+        for(Product product : products) {
+            productDtos.add(new ProductDto(product));
+        }
+        return productDtos;
+    }
+
+    public List<ProductDto> listProductsByCategory(Category category ) {
+        List<Product> products = productRepository.findAllByCategory(category);
         List<ProductDto> productDtos = new ArrayList<>();
         for(Product product : products) {
             productDtos.add(new ProductDto(product));
@@ -67,6 +77,26 @@ public class ProductService {
             throw new ProductNotExistException("Product id is invalid " + productId);
         return optionalProduct.get();
     }
+
+    // public void deleteProductById(){
+
+    // }
+
+    public List<ProductDto> listProductItems(Category category) {
+        // first get all the product items for category
+        List<Product> productList = productRepository.findAllByCategory(category);
+        
+        // convert product to productItemDto
+        List<ProductDto> products = new ArrayList<>();
+        for(Product product : productList) {
+            ProductDto productDto = new ProductDto(product);
+            products.add(productDto);
+        }
+
+        return products;
+
+    }
+
 
 
 

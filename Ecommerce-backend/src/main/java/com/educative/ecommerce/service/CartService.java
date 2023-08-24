@@ -20,25 +20,26 @@ public class CartService {
     @Autowired
     CartRepository cartRepository;
 
-    public boolean isProductInCart(User user, Product product) {
-        List<Cart> cartList = cartRepository.findAllByUserOrderByCreatedDateDesc(user);
-        for(Cart cart : cartList) {
-            if(cart.getProduct().equals(product)){
+    public boolean isProductInCart(List<Cart> cartList, Product product) {
+        for (Cart cart : cartList) {
+            if (cart.getProduct().equals(product)) {
                 return true;
             }
         }
         return false;
     }
+    
 
     public void addToCart(AddToCartDto addToCartDto, Product product, User user) {
-        if(isProductInCart(user, product)) {
-            List<Cart> cartList = cartRepository.findAllByUserOrderByCreatedDateDesc(user);
+        List<Cart> cartList = cartRepository.findAllByUserOrderByCreatedDateDesc(user);
+        if(isProductInCart(cartList, product)) {
+            
             for(Cart cart : cartList) {
                 if(cart.getProduct().equals(product)){
                     int existingQuantity = cart.getQuantity();
                     cart.setQuantity(existingQuantity + addToCartDto.getQuantity());
                     cartRepository.save(cart);
-                    break;
+                    return;
                 }
             }
         }

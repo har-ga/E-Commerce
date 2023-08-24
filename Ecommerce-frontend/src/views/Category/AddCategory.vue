@@ -50,7 +50,7 @@ export default {
         imageUrl : this.imageURL,
       };
 
-      const baseURL =  "https://limitless-lake-55070.herokuapp.com/";
+      const baseURL =  "http://localhost:8080/";
 
       await axios({
         method: 'post',

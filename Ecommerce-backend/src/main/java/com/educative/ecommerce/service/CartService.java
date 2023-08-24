@@ -20,9 +20,32 @@ public class CartService {
     @Autowired
     CartRepository cartRepository;
 
+    public boolean isProductInCart(User user, Product product) {
+        List<Cart> cartList = cartRepository.findAllByUserOrderByCreatedDateDesc(user);
+        for(Cart cart : cartList) {
+            if(cart.getProduct().equals(product)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void addToCart(AddToCartDto addToCartDto, Product product, User user) {
-        Cart cart = new Cart(product, addToCartDto.getQuantity(), user);
-        cartRepository.save(cart);
+        if(isProductInCart(user, product)) {
+            List<Cart> cartList = cartRepository.findAllByUserOrderByCreatedDateDesc(user);
+            for(Cart cart : cartList) {
+                if(cart.getProduct().equals(product)){
+                    int existingQuantity = cart.getQuantity();
+                    cart.setQuantity(existingQuantity + addToCartDto.getQuantity());
+                    cartRepository.save(cart);
+                    break;
+                }
+            }
+        }
+        else{
+            Cart cart = new Cart(product, addToCartDto.getQuantity(), user);
+            cartRepository.save(cart);
+        }
     }
 
     public CartDto listCartItems(User user) {
@@ -47,7 +70,7 @@ public class CartService {
     }
 
     public void deleteCartItem(int cartItemId, User user) throws CartItemNotExistException {
-        //TODO
+        
 
         // first check if cartItemId is valid else throw an CartItemNotExistException
 

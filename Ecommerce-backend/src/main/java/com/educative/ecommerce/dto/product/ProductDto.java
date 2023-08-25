@@ -13,14 +13,15 @@ public class ProductDto {
     private @NotNull double price;
     private @NotNull String description;
     private @NotNull Integer categoryId;
+    private @NotNull boolean active;
 
-    public ProductDto(@NotNull String name, @NotNull String imageURL, @NotNull double price, @NotNull String description, @NotNull Integer categoryId) {
-        this.name = name;
-        this.imageURL = imageURL;
-        this.price = price;
-        this.description = description;
-        this.categoryId = categoryId;
-    }
+    // public ProductDto(@NotNull String name, @NotNull String imageURL, @NotNull double price, @NotNull String description, @NotNull Integer categoryId) {
+    //     this.name = name;
+    //     this.imageURL = imageURL;
+    //     this.price = price;
+    //     this.description = description;
+    //     this.categoryId = categoryId;
+    // }
 
     public ProductDto(Product product) {
         this.setId(product.getId());
@@ -29,20 +30,33 @@ public class ProductDto {
         this.setDescription(product.getDescription());
         this.setPrice(product.getPrice());
         this.setCategoryId(product.getCategory().getId());
+        this.setActive(product.isActive());
     }
 
     public ProductDto() {
     }
 
     public ProductDto(Integer id, @NotNull String name, @NotNull String imageURL, @NotNull double price,
-            @NotNull String description, @NotNull Integer categoryId) {
+            @NotNull String description, @NotNull Integer categoryId, @NotNull boolean active) {
         this.id = id;
         this.name = name;
         this.imageURL = imageURL;
         this.price = price;
         this.description = description;
         this.categoryId = categoryId;
+        this.active = active;
     }
+
+    // public ProductDto(Integer id, @NotNull String name, @NotNull String imageURL, @NotNull double price,
+    //         @NotNull String description, @NotNull Integer categoryId) {
+    //     this.id = id;
+    //     this.name = name;
+    //     this.imageURL = imageURL;
+    //     this.price = price;
+    //     this.description = description;
+    //     this.categoryId = categoryId;
+    //     this.active = true;
+    // }
 
     public Integer getId() {
         return id;
@@ -91,4 +105,14 @@ public class ProductDto {
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    
 }

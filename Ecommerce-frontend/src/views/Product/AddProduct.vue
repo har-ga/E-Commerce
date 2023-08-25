@@ -32,6 +32,10 @@
             <label>Price</label>
             <input type="number" class="form-control" v-model="price" required>
           </div>
+          <div class="form-group">
+            <label>Active</label>
+            <input type="text" class="form-control" v-model="active" required>
+          </div>
           <button type="button" class="btn btn-primary" @click="addProduct">Submit</button>
         </form>
       </div>
@@ -50,7 +54,8 @@ export default {
       name : null,
       description : null,
       imageURL : null,
-      price : null
+      price : null, 
+      active : null
     }
   },
   props : ["baseURL", "categories"],

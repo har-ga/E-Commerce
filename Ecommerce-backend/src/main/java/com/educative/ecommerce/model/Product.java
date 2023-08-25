@@ -24,6 +24,26 @@ public class Product {
     private @NotNull String imageURL;
     private @NotNull double price;
     private @NotNull String description;
+    private @NotNull boolean active;
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Product(Integer id, @NotNull String name, @NotNull String imageURL, @NotNull double price,
+            @NotNull String description, @NotNull boolean active, Category category) {
+        this.id = id;
+        this.name = name;
+        this.imageURL = imageURL;
+        this.price = price;
+        this.description = description;
+        this.active = active;
+        this.category = category;
+    }
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -31,14 +51,15 @@ public class Product {
     Category category;
 
 
-    public Product(String name, String imageURL, double price, String description, Category category) {
-        super();
-        this.name = name;
-        this.imageURL = imageURL;
-        this.price = price;
-        this.description = description;
-        this.category = category;
-    }
+    // public Product(String name, String imageURL, double price, String description, Category category) {
+    //     super();
+    //     this.name = name;
+    //     this.imageURL = imageURL;
+    //     this.price = price;
+    //     this.description = description;
+    //     this.category = category;
+    //     this.active = true;
+    // }
 
     public Product() {
     }
@@ -93,12 +114,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", imageURL='" + imageURL + '\'' +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                '}';
+        return "Product [id=" + id + ", name=" + name + ", imageURL=" + imageURL + ", price=" + price + ", description="
+                + description + ", active=" + active + ", category=" + category + "]";
     }
 }

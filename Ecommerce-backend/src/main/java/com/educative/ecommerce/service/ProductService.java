@@ -33,7 +33,9 @@ public class ProductService {
         List<Product> products = productRepository.findAll();
         List<ProductDto> productDtos = new ArrayList<>();
         for(Product product : products) {
-            productDtos.add(new ProductDto(product));
+            if(product.isActive()) {
+                productDtos.add(new ProductDto(product));
+            }
         }
         return productDtos;
     }
@@ -42,7 +44,9 @@ public class ProductService {
         List<Product> products = productRepository.findAllByCategory(category);
         List<ProductDto> productDtos = new ArrayList<>();
         for(Product product : products) {
-            productDtos.add(new ProductDto(product));
+            if(product.isActive()) {
+                productDtos.add(new ProductDto(product));
+            } 
         }
         return productDtos;
     }
@@ -54,19 +58,30 @@ public class ProductService {
         product.setImageURL(productDto.getImageURL());
         product.setPrice(productDto.getPrice());
         product.setName(productDto.getName());
+        product.setActive(productDto.isActive());
         return product;
     }
 
 
     public void addProduct(ProductDto productDto, Category category) {
-        Product product = getProductFromDto(productDto, category);
+        // Product product = getProductFromDto(productDto, category);
         
-        productRepository.save(product);
+        // productRepository.save(product);
+        
+        Product product = getProductFromDto(productDto, category);
+        Optional<Product> optionalProduct = productRepository.findByName(product.getName());
+        if(optionalProduct.isPresent()) {
+            return;
+        }
+        else{
+            productRepository.save(product);
+        }
     }
 
-    public void updateProduct(Integer productID, ProductDto productDto, Category category) {
+    public void updateProduct(Integer productID, ProductDto productDto, Category category, boolean active) {
         Product product = getProductFromDto(productDto, category);
         product.setId(productID);
+        product.setActive(active);
         productRepository.save(product);
     }
 

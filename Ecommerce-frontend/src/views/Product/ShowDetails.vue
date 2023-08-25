@@ -69,26 +69,26 @@ export default {
     props : ["baseURL","products", "categories"],
     methods:{
         // add to wishlist
-        addToWishList(productId){
-            axios.post(`${this.baseURL}wishlist/add?token=${this.token}`, {
-                id:productId
-            }).then((response) => {
-                if(response.status==201) {
-                    swal({
-                        text: "Added to WishList. Please continue",
-                        icon: "success"
-                    });
-                }
-            },(error) =>{
-                console.log(error)
-                swal({
-                    text: "Something wrong with add to wishlist",
-                    icon: "error",
-                    closeOnClickOutside: false,
-                });
+        // addToWishList(productId){
+        //     axios.post(`${this.baseURL}wishlist/add?token=${this.token}`, {
+        //         id:productId
+        //     }).then((response) => {
+        //         if(response.status==201) {
+        //             swal({
+        //                 text: "Added to WishList. Please continue",
+        //                 icon: "success"
+        //             });
+        //         }
+        //     },(error) =>{
+        //         console.log(error)
+        //         swal({
+        //             text: "Something wrong with add to wishlist",
+        //             icon: "error",
+        //             closeOnClickOutside: false,
+        //         });
 
-            });
-        },
+        //     });
+        // },
 
         // add to cart function
         addToCart(productId){

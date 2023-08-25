@@ -11,6 +11,7 @@ import com.educative.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,7 +65,14 @@ public class ProductController {
             return new ResponseEntity<ApiResponse>(new ApiResponse(false, "category is invalid"), HttpStatus.CONFLICT);
         }
         Category category = optionalCategory.get();
-        productService.updateProduct(productID, productDto, category);
+        productService.updateProduct(productID, productDto, category, productDto.isActive() );
         return new ResponseEntity<>(new ApiResponse(true, "Product has been updated"), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/remove/{productID}")
+    public ResponseEntity<ApiResponse> deleteProduct(@PathVariable("productID") Integer productID,  @RequestBody @Valid ProductDto productDto) {
+        
+        productDto.setActive(false);
+        return new ResponseEntity<>(new ApiResponse(true, "Product has been deleted"), HttpStatus.OK);
     }
 }

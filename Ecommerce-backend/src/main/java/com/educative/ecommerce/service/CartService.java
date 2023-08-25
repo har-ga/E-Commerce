@@ -57,8 +57,11 @@ public class CartService {
         // convert cart to cartItemDto
         List<CartItemDto> cartItems = new ArrayList<>();
         for (Cart cart:cartList){
-            CartItemDto cartItemDto = new CartItemDto(cart);
-            cartItems.add(cartItemDto);
+            if(cart.getProduct().isActive()) {
+                CartItemDto cartItemDto = new CartItemDto(cart);
+                cartItems.add(cartItemDto);
+            }
+            
         }
 
         // calculate the total price

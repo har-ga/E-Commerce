@@ -10,6 +10,7 @@ import ShowDetails from "../views/Product/ShowDetails";
 import Signup from "../views/Signup";
 import Signin from "../views/Signin";
 import Cart from "../views/cart/Cart";
+import CategoryProduct from '../views/Product/CategoryProducts'; 
 
 const routes = [
   {
@@ -72,6 +73,12 @@ const routes = [
     name : 'Cart',
     component : Cart
   },
+  {
+    path: '/productByCategory/:categoryName',
+    name: 'CategoryProduct',
+    component: CategoryProduct,
+  }
+  
 ];
 
 const router = createRouter({

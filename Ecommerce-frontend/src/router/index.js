@@ -11,6 +11,7 @@ import Signup from "../views/Signup";
 import Signin from "../views/Signin";
 import Cart from "../views/cart/Cart";
 import CategoryProduct from '../views/Product/CategoryProducts'; 
+// import WishList from '../views/Product/WishList';
 
 const routes = [
   {
@@ -76,7 +77,7 @@ const routes = [
   {
     path: '/productByCategory/:categoryName',
     name: 'CategoryProduct',
-    component: CategoryProduct,
+    component: CategoryProduct
   }
   
 ];

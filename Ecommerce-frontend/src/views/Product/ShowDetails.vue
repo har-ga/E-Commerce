@@ -24,10 +24,10 @@
                         <input class="form-control" type="number" v-model="quantity"/>
                     </div>
                     <!-- wishlist button -->
-                    <button id="wishlist-button" class="btn mr-3 p-1 py-0" style="background-color: #b3a594"
+                    <!-- <button id="wishlist-button" class="btn mr-3 p-1 py-0" style="background-color: #b3a594"
                             @click="addToWishList(this.id)">
                         Add to wishlist
-                    </button>
+                    </button> -->
 
                     <!-- Add to cart button-->
                     <button type="button" id="add-to-cart-button" class="btn" @click="addToCart(this.id)">

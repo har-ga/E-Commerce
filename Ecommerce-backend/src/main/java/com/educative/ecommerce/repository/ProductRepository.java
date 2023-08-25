@@ -12,4 +12,5 @@ import org.springframework.stereotype.Repository;
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     List<Product> findAllByCategory(Category category);
+    
 }

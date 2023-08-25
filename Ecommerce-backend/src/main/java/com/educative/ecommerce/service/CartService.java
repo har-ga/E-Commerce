@@ -4,6 +4,7 @@ import com.educative.ecommerce.dto.cart.AddToCartDto;
 import com.educative.ecommerce.dto.cart.CartDto;
 import com.educative.ecommerce.dto.cart.CartItemDto;
 import com.educative.ecommerce.exceptions.CartItemNotExistException;
+import com.educative.ecommerce.exceptions.ProductNotExistException;
 import com.educative.ecommerce.model.Cart;
 import com.educative.ecommerce.model.Product;
 import com.educative.ecommerce.model.User;
@@ -91,5 +92,22 @@ public class CartService {
 
         cartRepository.deleteById(cartItemId);
         // delete the cart item
+    }
+
+    public void updateQuantity(AddToCartDto addToCartDto, Product product, User user) throws ProductNotExistException {
+        List<Cart> cartList = cartRepository.findAllByUserOrderByCreatedDateDesc(user);
+        if(isProductInCart(cartList, product)) {    
+            for(Cart cart : cartList) {
+                if(cart.getProduct().equals(product)){
+                    cart.setQuantity(addToCartDto.getQuantity());
+                    cartRepository.save(cart);
+                    return;
+                }
+            }
+        }
+        else{
+            throw new ProductNotExistException("Product not in cart");
+        }
+
     }
 }

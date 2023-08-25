@@ -4,9 +4,10 @@
         <div class="col-12 text-center">
           <h4 class="pt-3">Our Products</h4>
           <router-link
-            :to="{ name: 'CategoryProduct', params: { categoryName: 'desired-category-name' } }"
+            :to="{ name: 'CategoryProduct', params: { categoryName: 'Mobile' } }"
             v-show="$route.name === 'CategoryProduct'"
             >
+
           </router-link>
 
         </div>

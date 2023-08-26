@@ -31,7 +31,7 @@
 <!--      Admin drop down-->
     <li class="nav-item dropdown">
       <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Admin
+          All
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
           <router-link class="dropdown-item" :to="{name : 'AdminCategory'}">Category</router-link>
@@ -53,7 +53,8 @@
       </div>
     </li>
     <li class="nav-item">
-      <router-link class="text-light" :to="{name : 'Cart'}"><i class="fa fa-shopping-cart" style="font-size:36px"></i></router-link>
+      <router-link class="text-light" v-if="token" :to="{name : 'Cart'}"><i class="fa fa-shopping-cart" style="font-size:36px"></i></router-link>
+      <router-link class="text-light" v-else :to="{name: 'Signin'}"><i class="fa fa-shopping-cart" style="font-size:36px"></i></router-link>
     </li>
   </nav>
 

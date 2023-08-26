@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
@@ -50,4 +50,4 @@ export default {
         color: #484848;
         font-weight: 700;
     }
-</style>
+</style> -->

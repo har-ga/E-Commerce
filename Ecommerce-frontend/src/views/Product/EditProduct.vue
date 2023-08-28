@@ -70,12 +70,13 @@ export default {
         name : this.name,
         description : this.description,
         imageURL : this.imageURL,
-        price : this.price
+        price : this.price,
+        active : this.active
       }
 
       await axios({
-        method: 'post',
-        url: this.baseURL+"product/update/"+this.id,
+        method: 'put',
+        url: this.baseURL+"product/"+this.id,
         data : JSON.stringify(updatedProduct),
         headers: {
           'Content-Type': 'application/json'
@@ -103,6 +104,7 @@ export default {
     this.description = this.products[this.productIndex].description;
     this.imageURL = this.products[this.productIndex].imageURL;
     this.price = this.products[this.productIndex].price;
+    this.active = this.products[this.productIndex].active;
   }
 }
 </script>

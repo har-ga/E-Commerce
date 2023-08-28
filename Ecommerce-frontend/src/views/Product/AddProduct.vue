@@ -66,12 +66,13 @@ export default {
         name : this.name,
         description : this.description,
         imageURL : this.imageURL,
-        price : this.price
+        price : this.price,
+        active : 1
       }
 
       await axios({
         method: 'post',
-        url: this.baseURL+"product/add",
+        url: this.baseURL+"product/",
         data : JSON.stringify(newProduct),
         headers: {
           'Content-Type': 'application/json'
@@ -83,6 +84,7 @@ export default {
           icon: "success",
           closeOnClickOutside: false,
         });
+        this.$router.push('/admin/product');
       })
       .catch(err => console.log(err));
     }

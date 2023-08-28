@@ -54,7 +54,7 @@ export default {
 
       await axios({
         method: 'post',
-        url: baseURL+"category/create",
+        url: baseURL+"category/",
         data : JSON.stringify(newCategory),
         headers: {
           'Content-Type': 'application/json'
@@ -66,6 +66,7 @@ export default {
           icon: "success",
           closeOnClickOutside: false,
         });
+        this.$router.push('/admin/category');
       })
       .catch(err => console.log(err));
     }

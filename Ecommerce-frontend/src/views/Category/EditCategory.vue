@@ -54,8 +54,8 @@ export default {
       }
 
       await axios({
-        method: 'post',
-        url: this.baseURL+"category/update/"+this.id,
+        method: 'put',
+        url: this.baseURL+"category/"+this.id,
         data : JSON.stringify(updatedCategory),
         headers: {
           'Content-Type': 'application/json'

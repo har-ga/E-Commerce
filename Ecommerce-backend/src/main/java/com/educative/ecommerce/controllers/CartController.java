@@ -39,7 +39,7 @@ public class CartController {
     @Autowired
     AuthenticationService authenticationService;
 
-    @PostMapping("/add")
+    @PostMapping("/")
     public ResponseEntity<ApiResponse> addToCart(@RequestBody AddToCartDto addToCartDto, @RequestParam("token") String token)
             throws ProductNotExistException, AuthenticationFailException {
         // first authenticate the token
